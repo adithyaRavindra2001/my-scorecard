@@ -18,7 +18,7 @@ ENV/
 env.bak/
 venv.bak/
 .Python
-db.sqlite3
+
 instance/
 .webassets-cache
 celerybeat-schedule

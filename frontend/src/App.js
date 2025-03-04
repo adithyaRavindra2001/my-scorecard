@@ -9,7 +9,7 @@ const theme = createTheme();
 
 function App() {
   const handleFormSubmit = (payload) => {
-    fetch('http://127.0.0.1:8000/api/entries/', {
+    fetch('http://3.106.241.199:8000/api/entries/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)

@@ -30,7 +30,7 @@ function Dashboard() {
   }, []);
 
   const fetchEntries = () => {
-    fetch('http://127.0.0.1:8000/api/entries/')
+    fetch('http://3.106.241.199:8000/api/entries/')
       .then(response => response.json())
       .then(data => setEntries(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -56,13 +56,14 @@ function Dashboard() {
   };
 
   // Shareable Link Function
-  const generateShareLink = () => {
+  const generateShareLink = async () => {
     try {
       const compressedData = compressToEncodedURIComponent(JSON.stringify(entries));
       const baseUrl = window.location.href.split('?')[0];
-      const shareUrl = `${baseUrl}?shared=${compressedData}`;
+	    console.log(baseUrl) 
+ const shareUrl = `${baseUrl}?shared=${compressedData}`;
       
-      navigator.clipboard.writeText(shareUrl);
+      await navigator.clipboard.writeText(shareUrl);
       alert('Shareable link copied to clipboard!');
     } catch (error) {
       console.error('Error generating link:', error);
@@ -73,7 +74,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this record?')) {
       try {
-        await fetch(`http://127.0.0.1:8000/api/entries/${id}/`, {
+        await fetch(`http://3.106.241.199:8000/api/entries/${id}/`, {
           method: 'DELETE'
         });
         setEntries(entries.filter(entry => entry.id !== id));
